@@ -24,5 +24,12 @@ class DashboardView(View):
             return redirect('login')
         return render(request, 'dashboard.html', {'username': user})
     
+# this view is basically for destroying the session
+class LogoutView(View):
+    def get(self, request):
+        request.session.flush() #for clearing the session
+        return redirect('login')
+
+    
 
 
