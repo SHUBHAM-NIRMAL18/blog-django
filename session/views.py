@@ -16,4 +16,13 @@ class LoginView(View):
             return redirect('dashboard')
         return render(request, 'login.html', {'error':'Incorrect password'})
 
+#Dashboard view to see the session data
+class DashboardView(View):
+    def get(self, request):
+        user = request.session.get('username') #use the value given while definig the session
+        if not user:
+            return redirect('login')
+        return render(request, 'dashboard.html', {'username': user})
+    
+
 
